@@ -28,7 +28,7 @@ class ShipTest < Minitest::Test
 
   def test_is_the_ship_sunk
     ship_1 = Ship.new("Cruiser", 3, 2)
-    ship_2= Ship.new("Cruiser", 3, 0)
+    ship_2 = Ship.new("Cruiser", 3, 0)
     assert_equal false, ship_1.sunk?
     assert_equal true,  ship_2.sunk?
   end
