@@ -4,26 +4,23 @@ require './lib/ship'
 
 class ShipTest < Minitest::Test
   def setup
+    @ship = Ship.new("Cruiser", 3)
   end
 
   def test_the_ship_exists
-    ship = Ship.new("Cruiser", 3)
-    assert_instance_of Ship, ship
+    assert_instance_of Ship, @ship
   end
 
   def test_ship_has_a_name
-    ship = Ship.new("Cruiser", 3)
-    assert_equal "Cruiser", ship.name
+    assert_equal "Cruiser", @ship.name
   end
 
   def test_ship_length
-    ship = Ship.new("Cruiser", 3)
-    assert_equal 3, ship.length
+    assert_equal 3, @ship.length
   end
 
   def test_ship_health
-    ship = Ship.new("Cruiser", 3)
-    assert_equal 3, ship.health
+    assert_equal 3, @ship.health
   end
 
   def test_is_the_ship_sunk
@@ -34,11 +31,17 @@ class ShipTest < Minitest::Test
   end
 
   def test_hit_reduces_health
-    ship = Ship.new("Cruiser", 3)
-    assert_equal 2, ship.hit
-    assert_equal 1, ship.hit
-    assert_equal 0, ship.hit
-    assert_equal true, ship.sunk?
+    assert_equal 3, @ship.health
+    @ship.hit
+    assert_equal 2, @ship.health
+  end
+
+  def test_hit_floors_health_at_zero
+    ship_3 = Ship.new("Cruiser", 1)
+    assert_equal 1, ship_3.health
+    ship_3.hit
+    ship_3.hit
+    assert_equal 0, ship_3.health
   end
 
 end
