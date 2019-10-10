@@ -4,16 +4,46 @@ class Cell
 
   def initialize(coordinate)
     @coordinate = coordinate
-    @ship = []
+    @ship = nil
+    @fired = false
+    @render = "."
   end
 
   def empty?
-    @ship == []
+    @ship.nil?
   end
 
-  def place_ship(boats)
-    @ship << boats
-    @ship[0]
+  def place_ship(boat)
+    @ship = boat
+  end
+
+  def fired_upon?
+    @fired
+  end
+
+  def fire_upon
+    # Guard clause returns if truthy
+    # Code bails out early if the condition is met (cell has been fired upon)
+    # one line if statement
+    return if fired_upon?
+
+    @fired = true
+    if empty?
+      @render = "M"
+    else
+      @ship.hit
+      @render = "H"
+    end
+  end
+
+  def render(show_cell = false)
+    if show_cell && !empty?
+      return "S"
+    elsif !empty? && @ship.sunk?
+      return "X"
+    else
+      return @render
+    end
   end
 
 end
