@@ -37,7 +37,32 @@ class BoardTest < Minitest::Test
   end
 
   def test_is_cell_a_valid_coordinate
-    
+    #testing truth
+    expected = true
+    actual = @board.valid_coordinate?("A1")
+    assert_equal expected, actual
+
+    actual = @board.valid_coordinate?("D3")
+    assert_equal expected, actual
+
+    #testing false
+    expected = false
+    actual = @board.valid_coordinate?("G3")
+    assert_equal expected, actual
+
+    actual = @board.valid_coordinate?("Z9")
+    assert_equal expected, actual
+  end
+
+  def test_is_the_ship_on_a_valid_placement
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    expected = false
+    actual = @board.valid_placement?(cruiser, ["A1", "A2"])
+    assert_equal expected, actual
+
+    actual = @board.valid_placement?(submarine, ["A2", "A3", "A4"])
+    assert_equal expected, actual
   end
 
 end
