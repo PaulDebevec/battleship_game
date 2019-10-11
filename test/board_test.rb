@@ -58,10 +58,10 @@ class BoardTest < Minitest::Test
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     expected = false
-    actual = @board.valid_placement?(cruiser, ["A1", "A2"])
+    actual = @board.valid_placement?(cruiser, %w[A1 A2])
     assert_equal expected, actual
 
-    actual = @board.valid_placement?(submarine, ["A2", "A3", "A4"])
+    actual = @board.valid_placement?(submarine, %w[A2 A3 A4])
     assert_equal expected, actual
   end
 
