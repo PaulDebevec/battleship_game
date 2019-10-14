@@ -21,10 +21,10 @@ class Cell
     @fired
   end
 
+  # fire_upon only allows user to fire on a cell once.
   def fire_upon
     # Guard clause returns if truthy
     # Code bails out early if the condition is met (cell has been fired upon)
-    # one line if statement
     return if fired_upon?
 
     @fired = true
@@ -37,11 +37,14 @@ class Cell
   end
 
   def render(show_cell = false)
+    # if show sell and cell is not empty, returns "S"
     if show_cell && !empty?
       return "S"
+    # if the cell has a ship, and if it triggers .sunk? return "X"
     elsif !empty? && @ship.sunk?
       return "X"
     else
+      # If the above both fail, return the @render
       return @render
     end
   end
