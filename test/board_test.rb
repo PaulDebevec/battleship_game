@@ -101,18 +101,45 @@ class BoardTest < Minitest::Test
     cell_1 = @board.cells["A1"]
     cell_2 = @board.cells["A2"]
     cell_3 = @board.cells["A3"]
-    actual = @board.place(@cruiser, ["A1", "A2", "A3"])
+    actual = @board.place(@cruiser, %w[A1 A2 A3])
     assert_equal cell_1.ship, cell_2.ship
     assert_equal cell_3.ship, cell_2.ship
   end
 
-  def test_ship_placement_does_not_overlap
-    expected = "Invalid placement"
-    @board.place(@cruiser, ["A1", "A2", "A3"])
-
-    actual = @board.place(@submarine, ["A1", "A2"])
+  def test_place_ship_changes_render_value_to_S_when_render_is_true
+    cell_1 = @board.cells["A1"]
+    cell_2 = @board.cells["A2"]
+    cell_3 = @board.cells["A3"]
+    actual = @board.place(@cruiser, %w[A1 A2 A3])
+    actual = cell_1.render(true)
+    @board.place(@cruiser, %w[A1 A2 A3])
+    expected = "S"
     assert_equal expected, actual
   end
 
+  def test_place_ship_maintains_render_value_is_a_period_when_render_is_false
+    cell_1 = @board.cells["A1"]
+    cell_2 = @board.cells["A2"]
+    cell_3 = @board.cells["A3"]
+    actual = @board.place(@cruiser, %w[A1 A2 A3])
+    actual = cell_1.render
+    @board.place(@cruiser, %w[A1 A2 A3])
+    expected = "."
+    assert_equal expected, actual
+  end
+
+  def test_ship_placement_does_not_overlap
+    expected = "Invalid placement"
+    @board.place(@cruiser, %w[A1 A2 A3])
+
+    actual = @board.place(@submarine, %w[A1 A2])
+    assert_equal expected, actual
+  end
+
+  def test_board_render
+    expected = "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
+    actual = @board.render
+    assert_equal expected, actual
+  end
 
 end
