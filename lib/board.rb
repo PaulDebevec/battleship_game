@@ -2,7 +2,7 @@ require './lib/cell'
 
 class Board
     attr_reader :cells
-    attr_accessor :render
+    # attr_accessor :render
 
   def initialize
     @cells = {}
@@ -58,8 +58,14 @@ class Board
   end
 
   def render(show_cell = false)
-    @cells.values.map { |cell| "#{cell.render(show_cell)}" }
-
-    "  1 2 3 4 \nA #{@cells.values[0].render} #{@cells.values[1].render} #{@cells.values[2].render} #{@cells.values[3].render} \nB #{@cells.values[4].render} #{@cells.values[5].render} #{@cells.values[6].render} #{@cells.values[7].render} \nC #{@cells.values[8].render} #{@cells.values[9].render} #{@cells.values[10].render} #{@cells.values[11].render} \nD #{@cells.values[12].render} #{@cells.values[13].render} #{@cells.values[14].render} #{@cells.values[15].render} \n"
+    # binding.pry
+    # render_cells = @cells.values.map { |cell| cell.render(show_cell)}
+    "  1 2 3 4 \n" +
+     "A #{@cells.values[0].render} #{@cells.values[1].render} #{@cells.values[2].render} " +
+     "#{@cells.values[3].render} \nB #{@cells.values[4].render} #{@cells.values[5].render} " +
+     "#{@cells.values[6].render} #{@cells.values[7].render} \nC #{@cells.values[8].render} " +
+     "#{@cells.values[9].render} #{@cells.values[10].render} #{@cells.values[11].render} \n" +
+     "D #{@cells.values[12].render} #{@cells.values[13].render} #{@cells.values[14].render} " +
+     "#{@cells.values[15].render} \n"
   end
 end
