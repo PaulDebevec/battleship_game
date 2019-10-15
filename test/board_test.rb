@@ -98,11 +98,21 @@ class BoardTest < Minitest::Test
   end
 
   def test_place_ship_places_ship
-    expected = true
+    cell_1 = @board.cells["A1"]
+    cell_2 = @board.cells["A2"]
+    cell_3 = @board.cells["A3"]
     actual = @board.place(@cruiser, ["A1", "A2", "A3"])
-    assert_equal expected, actual
+    assert_equal cell_1.ship, cell_2.ship
+    assert_equal cell_3.ship, cell_2.ship
+  end
 
-    actual = @board.place(@submarine, ["C3", "D3"])
+  def test_ship_placement_does_not_overlap
+    expected = "Invalid placement"
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+
+    actual = @board.place(@submarine, ["A1", "A2"])
     assert_equal expected, actual
   end
+
+
 end
