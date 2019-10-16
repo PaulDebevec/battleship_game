@@ -5,25 +5,24 @@ require'./lib/cell'
 require'./lib/board'
 require'pry'
 
-computer_board = Board.new
-player_board = Board.new
-cruiser = Ship.new("Cruiser", 3)
-computer_cruiser = Ship.new("Cruiser", 3)
-submarine = Ship.new("Submarine", 2)
-computer_submarine = Ship.new("Submarine", 2)
+@computer_board = Board.new
+@player_board = Board.new
+@cruiser = Ship.new("Cruiser", 3)
+@computer_cruiser = Ship.new("Cruiser", 3)
+@submarine = Ship.new("Submarine", 2)
+@computer_submarine = Ship.new("Submarine", 2)
 
 puts "Welcome to BATTLESHIP"
 puts "Enter p to play. Enter q to quit."
-# gets.chomp
+
+
 
 puts "=============COMPUTER BOARD============="
-puts computer_board.render
+puts @computer_board.render
 
 puts "=============PLAYER BOARD============="
-puts player_board.render(true)
+puts @player_board.render(true)
 
-
-# some method that allows us to continue with 'p'
 # this method should initiate the compoter-generated placement
 
 p "I have laid out my ships on the grid."
