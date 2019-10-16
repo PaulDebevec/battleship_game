@@ -20,10 +20,6 @@ class Board
     end
   end
 
-  def valid_coordinate?(coord)
-    @cells.key?(coord)
-  end
-
   def valid_placement?(ship, coords)
     return false if ship.length != coords.length
 
@@ -33,6 +29,14 @@ class Board
     succession?(rows) && same?(columns) || succession?(columns) && same?(rows)
   end
 
+  def valid_coordinates?(coords)
+    coords.map do |coord|
+      if coord =! @cells.key?
+        puts  "Invalid coordinates"
+      else
+        true
+    end
+  end
 # Helper method for valid_placement?
   def same?(array_to_check)
     return array_to_check.uniq.length == 1

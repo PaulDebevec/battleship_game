@@ -33,8 +33,8 @@ class ComputerTest < MiniTest::Test
   end
 
   def test_it_fires_randomly
-    skip
-    assert_equal @cells.sample, computer.fire_upon
+    # skip
+    assert_equal @board.cells.values.sample, @computer.fire_upon
   end
 
 end

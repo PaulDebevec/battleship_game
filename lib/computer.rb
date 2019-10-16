@@ -16,15 +16,12 @@ class Computer
     end
   end
 
-  def fired_upon?
+  def fired_upon
     @fired
   end
 
   def fire_upon
     return if fired_upon?
-
-    @board.cells.keys.sample
-    @fired = true
   end
 
 end

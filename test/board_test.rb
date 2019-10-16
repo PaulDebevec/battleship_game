@@ -12,11 +12,8 @@ class BoardTest < Minitest::Test
     @submarine = Ship.new("Submarine", 2)
   end
 
-  def test_does_the_board_exist
-    expected = Board
-    actual = @board
-
-    assert_instance_of expected, actual
+  def test_does_it_exits
+    assert_instance_of Board, board
   end
 
   def test_board_cells_is_a_hash
