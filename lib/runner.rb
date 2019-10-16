@@ -23,22 +23,12 @@ puts @computer_board.render
 puts "=============PLAYER BOARD============="
 puts @player_board.render(true)
 
-# this method should initiate the compoter-generated placement
+puts "I have laid out my ships on the grid."
+puts "You now need to lay out your two ships."
+puts "The Cruiser is three units long and the Submarine is two units long."
 
-p "I have laid out my ships on the grid."
-p "You now need to lay out your two ships."
-p "The Cruiser is three units long and the Submarine is two units long."
-p "
-1 2 3 4
-A . . . .
-B . . . .
-C . . . .
-D . . . .
-"
-p "Enter the squares for the Cruiser (3 spaces):"
-  coords = gets.chomp
-  @board.place_ship(@cruiser, coords)
+puts "Enter the squares for the Cruiser (3 spaces)"
 
-p @board.render(true)
+puts @board.render(true)
 
 "Enter the squares for the Submarine (2 spaces):"
