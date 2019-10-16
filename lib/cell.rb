@@ -6,7 +6,6 @@ class Cell
     @coordinate = coordinate
     @ship = nil
     @fired = false
-    @render = "."
   end
 
   def empty?
@@ -33,15 +32,15 @@ class Cell
 
   def render(show_cell = false)
     if show_cell && !empty?
-      @render = "S"
+      "S"
     elsif fired_upon? && !empty? && @ship.hit
-      @render = "H"
+      "H"
     elsif !empty? && @ship.sunk?
-      @render = "X"
+      "X"
     elsif fired_upon? && empty?
-      @render = "M"
+      "M"
     else
-      return @render
+      "."
     end
   end
 
