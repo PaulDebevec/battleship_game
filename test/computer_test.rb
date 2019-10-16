@@ -11,15 +11,25 @@ class ComputerTest < MiniTest::Test
   def setup
     @board = Board.new
     @computer = Computer.new(@board)
+    @computer_cruiser = Ship.new("Cruiser", 3)
+    @computer_submarine = Ship.new("Submarine", 2)
   end
 
   def test_it_exists
     assert_instance_of Computer, @computer
   end
 
-  def test_it_has_a_board
+  def test_initialize
      assert_instance_of Board, @computer.board
   end
 
+  def test_it_can_place_ships
+    @computer.place(@computer_cruiser)
+    @computer.place(@computer_submarine)
+    actual = @computer.board.cells.values.all? do |cell_obj|
+      cell_obj.ship.nil?
+    end
+    assert_equal false, actual
+  end
 
 end
