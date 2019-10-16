@@ -16,7 +16,8 @@ class Computer
   end
 
 def random_fire_upon
-  @board.cells.keys.sample.fire_upon
+  @board.cells.values.sample.fire_upon
+  @fired = true
 end
 
 end
