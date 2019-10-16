@@ -24,12 +24,17 @@ class ComputerTest < MiniTest::Test
   end
 
   def test_it_can_place_ships
-    @computer.place(@computer_cruiser)
-    @computer.place(@computer_submarine)
+    @computer.generate_placement(@computer_cruiser)
+    @computer.generate_placement(@computer_submarine)
     actual = @computer.board.cells.values.all? do |cell_obj|
       cell_obj.ship.nil?
     end
     assert_equal false, actual
+  end
+
+  def test_it_fires_randomly
+    skip
+    assert_equal @cells.sample, computer.fire_upon
   end
 
 end
