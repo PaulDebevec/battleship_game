@@ -11,7 +11,7 @@ class Cell
   def empty?
     @ship.nil?
   end
-
+# board.cells.values[0].ship
   def place_ship(boat)
     @ship = boat
   end
@@ -22,10 +22,11 @@ class Cell
 
   # fire_upon only allows user to fire on a cell once.
   def fire_upon
-    return if fired_upon?
+    return "You already fired there!" if fired_upon?
 
     if @ship != nil
       @ship.hit
+      @fired = true
     end
     @fired = true
   end
@@ -33,9 +34,9 @@ class Cell
   def render(show_cell = false)
     if show_cell && !empty?
       "S"
-    elsif fired_upon? && !empty? && @ship.hit
+    elsif fired_upon? && !empty? && ship.hit
       "H"
-    elsif !empty? && @ship.sunk?
+    elsif !empty? && ship.sunk?
       "X"
     elsif fired_upon? && empty?
       "M"
