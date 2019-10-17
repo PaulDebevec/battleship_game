@@ -3,14 +3,6 @@ require './lib/cell'
 require './lib/board'
 require './lib/computer'
 require 'pry'
-# @computer = Computer.new
-# @computer_board = Board.new
-# @player_board = Board.new
-# @cruiser = Ship.new("Cruiser", 3)
-# @computer_cruiser = Ship.new("Cruiser", 3)
-# @submarine = Ship.new("Submarine", 2)
-# @computer_submarine = Ship.new("Submarine", 2)
-# @user_input = gets.chomp
 
 def startup
   main_menu
@@ -75,8 +67,6 @@ end
     puts computer.board.render
     puts "=============PLAYER BOARD============="
     puts player_board.render(true)
-    # ********* Add a guard clause for invalid placements and off-board placements *********
-    # if player_board.ship
 
     loop do
       puts "Enter a coordinate to fire upon"
@@ -91,9 +81,10 @@ end
           break
         end
       end
+
       computer_board.cells[player_shot].fire_upon
       computer.random_fire_upon(player_board)
-      # player_board.cells.random_fire_upon
+
       puts "=============COMPUTER BOARD============="
       puts computer.board.render
       puts "=============PLAYER BOARD============="

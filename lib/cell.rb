@@ -8,6 +8,7 @@ class Cell
     @fired = false
   end
 
+  # Returns nil if there is no ship in cell
   def empty?
     @ship.nil?
   end
@@ -30,6 +31,7 @@ class Cell
     @fired = true
   end
 
+  # renders each cell with the return characters - situationally
   def render(show_cell = false)
     if !empty? && ship.sunk?
       "X"
@@ -43,5 +45,4 @@ class Cell
       "."
     end
   end
-
 end

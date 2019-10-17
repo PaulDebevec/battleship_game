@@ -10,6 +10,7 @@ class Board
     populate_cells
   end
 
+  # Populates each cell with a cell object
   def populate_cells
     @width.each do |letter|
       @height.each do |number|
@@ -19,10 +20,12 @@ class Board
     end
   end
 
+  # Checks the cell to verify the input coord is in the cells list of keys
   def valid_coordinate?(coord)
     @cells.key?(coord)
   end
 
+  # Verifies the ship placement is in a valid coordinate set
   def valid_placement?(ship, coords)
     coords.each do |coord|
       return false if !valid_coordinate?(coord)
@@ -35,16 +38,17 @@ class Board
     succession?(rows) && same?(columns) || succession?(columns) && same?(rows)
   end
 
-# Helper method for valid_placement?
+# Helper method for valid_placement? checks if the numbers or letters are the same
   def same?(array_to_check)
     return array_to_check.uniq.length == 1
   end
 
-# Helper method for valid_placement?
+# Helper method for valid_placement? checks succession of letters or numbers
   def succession?(array_vars)
      return array_vars.each_cons(2).all? {|co| co[1] == co[0].succ}
   end
 
+  # Allows user to place their ships
   def place(ship, coords)
     return "Invalid placement" if !valid_placement?(ship, coords) || !no_ship_in_cell(coords)
     coords.each do |coord|
@@ -59,9 +63,8 @@ class Board
     end
   end
 
+  # Static board render
   def render(show_cell = false)
-    # binding.pry
-    # render_cells = @cells.values.map { |cell| cell.render(show_cell)}
     "  1 2 3 4 \n" +
      "A #{@cells.values[0].render(show_cell)} #{@cells.values[1].render(show_cell)} #{@cells.values[2].render(show_cell)} " +
      "#{@cells.values[3].render(show_cell)} \nB #{@cells.values[4].render(show_cell)} #{@cells.values[5].render(show_cell)} " +
@@ -70,5 +73,4 @@ class Board
      "D #{@cells.values[12].render(show_cell)} #{@cells.values[13].render(show_cell)} #{@cells.values[14].render(show_cell)} " +
      "#{@cells.values[15].render(show_cell)} \n"
   end
-
 end
