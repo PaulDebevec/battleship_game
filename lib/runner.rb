@@ -40,8 +40,8 @@ end
     puts player_board.render
     player_cruiser = Ship.new("Cruiser", 3)
     player_submarine = Ship.new("Submarine", 2)
-    puts "*Computer*: Now enter the coordinates to place your #{player_cruiser.name}"
 
+    puts "*Computer*: Now enter the coordinates to place your #{player_cruiser.name}"
     while true
       player_input = gets.chomp.upcase.split(" ")
 
@@ -60,7 +60,16 @@ end
     puts player_board.render(true)
 
     puts "*Computer*: Now, place your #{player_submarine.name}"
-    player_input = gets.chomp.upcase.split(" ")
+    while true
+      player_input = gets.chomp.upcase.split(" ")
+
+      if player_board.valid_placement?(player_submarine, player_input)
+        break
+      else
+        puts "Invalid placement"
+      end
+    end
+
     place_ship = player_board.place(player_submarine, player_input)
 
     puts "=============COMPUTER BOARD============="
