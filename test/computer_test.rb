@@ -32,9 +32,13 @@ class ComputerTest < MiniTest::Test
     assert_equal false, actual
   end
 
-  def test_it_fires_randomly
-    skip
-    assert_equal @cells.sample, computer.fire_upon
+  def test_it_fires_on_random_cell
+    player_board = Board.new
+    expected = true
+    fired_on_cell = @computer.random_fire_upon(player_board)
+    actual = player_board.cells[fired_on_cell].fired_upon?
+
+    assert_equal expected, actual
   end
 
 end

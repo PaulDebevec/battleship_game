@@ -24,6 +24,9 @@ class Board
   end
 
   def valid_placement?(ship, coords)
+    coords.each do |coord|
+      return false if !valid_coordinate?(coord)
+    end
     return false if ship.length != coords.length || !no_ship_in_cell(coords)
 
     rows = coords.map {|coord| coord[0]}
