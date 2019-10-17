@@ -6,6 +6,7 @@ class Computer
     @available_cells = @board.cells.keys
   end
 
+  # Computer generates random ship placement
   def generate_placement(ship)
     loop do
       coordinates = @board.cells.keys.each_cons(ship.length).to_a.sample
@@ -16,11 +17,11 @@ class Computer
     end
   end
 
+  # Computer fires upon a random cell
   def random_fire_upon(player_board)
     @available_cells.shuffle!
     target_coord = @available_cells.pop
     player_board.cells[target_coord].fire_upon
     target_coord
   end
-
 end
